@@ -1,6 +1,3 @@
-"""
-TODO
-"""
 import sys
 import os
 import logging
@@ -69,7 +66,7 @@ def pytest_runtest_teardown(item):
             _attach_save_flush(h)
 
 
-def _add_gae_to_path(path):
+def _add_gae_to_syspath(path):
     """ Adds Google App Engine and libs that comes with GAE to sys.path
 
     It is hardcoded and Google may change its internal structure anytime.

@@ -7,7 +7,7 @@ fhandler.close()
 
 setup(name='pytest_gae',
       version='pre-release',
-      description="pytest plugin for Google App Engine",
+      description="pytest plugin for apps written with Google's AppEngine",
       long_description=long_desc,
       author='Petras Zdanavicius (petraszd)',
       author_email='petras@gmail.com',

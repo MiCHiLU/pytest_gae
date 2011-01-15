@@ -1,6 +1,27 @@
 pytest_gae
 ==========
 
-Just start of the project.
+It is pytest plugin that helps You to test applications written with Google's
+AppEngine.
 
-This plugin is **not ready**.
+
+Usage example
+=============
+
+TODO
+
+
+Testing models
+--------------
+
+TODO
+
+
+Using with WebTest
+------------------
+
+TODO
+
+
+Limitation
+==========
