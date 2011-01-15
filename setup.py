@@ -1,16 +1,17 @@
 from setuptools import setup
 
 
-with open('README.rst', 'r') as f:
-    long_desc = f.read()
+fhandler = open('README.rst', 'r')
+long_desc = fhandler.read()
+fhandler.close()
 
 setup(name='pytest_gae',
       version='pre-release',
-      description="py.test plugin for google app engine",
+      description="pytest plugin for Google App Engine",
       long_description=long_desc,
       author='Petras Zdanavicius (petraszd)',
       author_email='petras@gmail.com',
-      #url='',
+      url='http://bitbucket.org/petraszd/pytest_gae/',
       py_modules=['pytest_gae'],
       install_requires=['pytest'],
       entry_points={'pytest11': ['pytest_gae = pytest_gae']},
