@@ -17,8 +17,11 @@ Options
 Limitation
 ==========
 
+
 Plugin does not prevent You from using code/modules that AppEngine's
-environment refuse to execute. So, You can easily do something like that ::
+environment refuse to execute. So, You can easily do something like that:
+
+.. code-block:: python
 
   import socket
   import numpy
@@ -56,7 +59,9 @@ Let assume we have a directory that looks something like that ::
       └── test_models.py
 
 
-main.py ::
+main.py:
+
+.. code-block:: python
 
   #!/usr/bin/env python
   from google.appengine.ext import webapp
@@ -101,7 +106,9 @@ main.py ::
 Testing models
 --------------
 
-test_models.py ::
+test_models.py :
+
+.. code-block:: python
 
   from google.appengine.ext import db
   import pytest
@@ -141,7 +148,9 @@ We would create three funcargs' functions that allows us to test application:
 We could do that by altering *os.enviroment*
 
 
-test_handlers.py::
+test_handlers.py:
+
+.. code-block:: python
 
   import os
 
@@ -191,8 +200,9 @@ test_handlers.py::
 Running
 -------
 
-py.test tests --with-gae --gae-path=gae --gae-project-path=./src/ ::
+.. code-block:: bash
 
+  py.test tests --with-gae --gae-path=gae --gae-project-path=./src/ :
   platform linux2 -- Python 2.5.5 -- pytest-2.0.0
   collected 7 items
 
