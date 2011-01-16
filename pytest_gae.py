@@ -10,7 +10,7 @@ def pytest_addoption(parser):
                     default=False, help='Use pytest_gae plugin')
     group.addoption('--gae-path', action='store', dest='gae_path',
                     metavar='PATH', default='./google_appengine/',
-                    help="Google App Engine's source PATH")
+                    help="Google App Engine's root PATH")
     group.addoption('--gae-project-path', action='store', dest='gae_prj_path',
                     metavar='PATH', default='./',
                     help="Your project's source code's PATH")
