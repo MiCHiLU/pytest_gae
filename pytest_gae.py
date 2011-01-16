@@ -101,7 +101,7 @@ def _validate_project_path(path):
     # Google App Engine projects must contain app.yaml at their roots.
     # So, this code just checks if app.yaml exists
     if not os.path.exists(os.path.join(path, 'app.yaml')):
-        raise pytest.UsageError("Your Google App Engine's project can not "
+        raise pytest.UsageError("Your AppEngine's project can not "
                                 "be found. Try to use --gae-project-path "
                                 "option. Current path: <%s>" % path)
 
