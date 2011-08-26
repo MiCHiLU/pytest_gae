@@ -27,7 +27,6 @@ def pytest_configure(config):
     _validate_project_path(config.option.gae_prj_path)
 
 
-
 def pytest_runtest_setup(item):
     if not item.config.option.use_gae:
         return
@@ -73,16 +72,10 @@ def _add_gae_to_syspath(path):
     So, it is not the safetest method to do it
     """
 
-    sys.path.append(path)
-    sys.path.append(os.path.join(path, 'google'))
-    sys.path.append(os.path.join(path, 'lib/antlr3'))
-    sys.path.append(os.path.join(path, 'lib/django'))
-    sys.path.append(os.path.join(path, 'lib/fancy_urllib'))
-    sys.path.append(os.path.join(path, 'lib/graphy'))
-    sys.path.append(os.path.join(path, 'lib/ipaddr'))
-    sys.path.append(os.path.join(path, 'lib/simplejson'))
-    sys.path.append(os.path.join(path, 'lib/webob'))
-    sys.path.append(os.path.join(path, 'lib/yaml/lib'))
+    sys.path.insert(0, path)
+
+    import dev_appserver
+    dev_appserver.fix_sys_path()
 
 
 def _add_project_to_syspath(path):
@@ -96,6 +89,7 @@ def _validate_gae_path(path):
         raise pytest.UsageError("google.appengine lib can not be imported. "
                                 "Try to use --gae-path option. "
                                 "Current path: <%s> " % path)
+
 
 def _validate_project_path(path):
     # Google App Engine projects must contain app.yaml at their roots.
