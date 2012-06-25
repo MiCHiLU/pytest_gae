@@ -46,7 +46,7 @@ def pytest_runtest_setup(item):
                    'matcher_path': '/tmp/dev_appserver.test_matcher',
                    'clear_datastore': True})
 
-    app_cfg, _junk = dev_appserver.LoadAppConfig(project_path, {})
+    app_cfg, _junk, _from_cache = dev_appserver.LoadAppConfig(project_path, {})
     dev_appserver.SetupStubs(app_cfg.application, **config)
 
 
