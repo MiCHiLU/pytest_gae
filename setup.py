@@ -1,12 +1,10 @@
 from setuptools import setup
 
 
-fhandler = open('README.rst', 'r')
-long_desc = fhandler.read()
-fhandler.close()
+long_desc = open('README.rst', 'r').read()
 
 setup(name='pytest_gae',
-      version='0.2',
+      version='0.2.1',
       description="pytest plugin for apps written with Google's AppEngine",
       long_description=long_desc,
       author='Petras Zdanavicius (petraszd)',

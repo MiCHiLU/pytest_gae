@@ -46,15 +46,15 @@ Usage example
 Let assume we have a directory that looks something like that ::
 
   ./
-  ├── gae               # AppEngine's root
-  │   ├── ...
-  ├── src               # Your project's root
-  │   ├── app.yaml
-  │   ├── index.yaml
-  │   └── main.py
-  └── tests             # Tests' dir
-      ├── test_handlers.py
-      └── test_models.py
+  |-- gae               # AppEngine's root
+  |   |-- ...
+  |-- src               # Your project's root
+  |   |-- app.yaml
+  |   |-- index.yaml
+  |   |-- main.py
+  |-- tests             # Tests' dir
+      |-- test_handlers.py
+      |-- test_models.py
 
 
 main.py::
