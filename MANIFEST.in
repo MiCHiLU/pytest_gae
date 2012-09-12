@@ -1,4 +1,4 @@
-setup.py
-pytest_gae.py
-README.rst
-LICENSE
+include setup.py
+include pytest_gae.py
+include README.rst
+include LICENSE
