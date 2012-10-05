@@ -79,7 +79,7 @@ def _add_gae_to_syspath(path):
 
 
 def _add_project_to_syspath(path):
-    sys.path.append(path)
+    sys.path.insert(0, path)
 
 
 def _validate_gae_path(path):
