@@ -2,6 +2,14 @@ import sys
 import os
 import logging
 import pytest
+import py
+
+
+class Pdb(py.std.pdb.Pdb, object):
+  def __init__(self, stdin=sys.__stdin__, stdout=sys.__stdout__, *argv, **kwargv):
+    return super(Pdb, self).__init__(stdin=stdin, stdout=stdout, *argv, **kwargv)
+
+py.std.pdb.Pdb = Pdb
 
 
 def pytest_addoption(parser):
