@@ -50,7 +50,7 @@ def pytest_runtest_setup(item):
       runtime.setup_stubs(config)
       _application = runtime.PythonRuntime(config)
     else:
-      from google.appengine.tools import dev_appserver
+      from google.appengine.tools import old_dev_appserver
       from google.appengine.tools.dev_appserver_main import DEFAULT_ARGS
 
       config = DEFAULT_ARGS.copy()
@@ -62,8 +62,8 @@ def pytest_runtest_setup(item):
                      'matcher_path': '/tmp/dev_appserver.test_matcher',
                      'clear_datastore': True})
 
-      app_cfg, _junk, _from_cache = dev_appserver.LoadAppConfig(project_path, {})
-      dev_appserver.SetupStubs(app_cfg.application, **config)
+      app_cfg, _junk, _from_cache = old_dev_appserver.LoadAppConfig(project_path, {})
+      old_dev_appserver.SetupStubs(app_cfg.application, **config)
 
 
 def pytest_runtest_teardown(item):
