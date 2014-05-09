@@ -6,8 +6,8 @@ import py
 
 
 class Pdb(py.std.pdb.Pdb, object):
-  def __init__(self, stdin=sys.__stdin__, stdout=sys.__stdout__, *argv, **kwargv):
-    return super(Pdb, self).__init__(stdin=stdin, stdout=stdout, *argv, **kwargv)
+    def __init__(self, stdin=sys.__stdin__, stdout=sys.__stdout__, *argv, **kwargv):
+        return super(Pdb, self).__init__(stdin=stdin, stdout=stdout, *argv, **kwargv)
 
 py.std.pdb.Pdb = Pdb
 
@@ -45,25 +45,25 @@ def pytest_runtest_setup(item):
     project_path = item.config.option.gae_prj_path
 
     if item.config.option.use_devappserver2:
-      from google.appengine.tools.devappserver2.python import runtime
-      config = runtime.runtime_config_pb2.Config()
-      runtime.setup_stubs(config)
-      _application = runtime.PythonRuntime(config)
+        from google.appengine.tools.devappserver2.python import runtime
+        config = runtime.runtime_config_pb2.Config()
+        runtime.setup_stubs(config)
+        _application = runtime.PythonRuntime(config)
     else:
-      from google.appengine.tools import old_dev_appserver
-      from google.appengine.tools.dev_appserver_main import DEFAULT_ARGS
+        from google.appengine.tools import old_dev_appserver
+        from google.appengine.tools.dev_appserver_main import DEFAULT_ARGS
 
-      config = DEFAULT_ARGS.copy()
-      config.update({'template_dir': os.path.join(gae_path, 'templates'),
-                     'blobstore_path': '/tmp/dev_appserver.test_blobstore',
-                     'root_path': project_path,
-                     'history_path': '/tmp/dev_appserver.datastore.test_history',
-                     'datastore_path': '/tmp/dev_appserver.test_datastore',
-                     'matcher_path': '/tmp/dev_appserver.test_matcher',
-                     'clear_datastore': True})
+        config = DEFAULT_ARGS.copy()
+        config.update({'template_dir': os.path.join(gae_path, 'templates'),
+                       'blobstore_path': '/tmp/dev_appserver.test_blobstore',
+                       'root_path': project_path,
+                       'history_path': '/tmp/dev_appserver.datastore.test_history',
+                       'datastore_path': '/tmp/dev_appserver.test_datastore',
+                       'matcher_path': '/tmp/dev_appserver.test_matcher',
+                       'clear_datastore': True})
 
-      app_cfg, _junk, _from_cache = old_dev_appserver.LoadAppConfig(project_path, {})
-      old_dev_appserver.SetupStubs(app_cfg.application, **config)
+        app_cfg, _junk, _from_cache = old_dev_appserver.LoadAppConfig(project_path, {})
+        old_dev_appserver.SetupStubs(app_cfg.application, **config)
 
 
 def pytest_runtest_teardown(item):
@@ -91,9 +91,9 @@ def _add_gae_to_syspath(config):
     sys.path.insert(0, config.option.gae_path)
 
     if config.option.use_devappserver2:
-      import devappserver2 as dev_appserver
+        import devappserver2 as dev_appserver
     else:
-      import dev_appserver
+        import dev_appserver
     dev_appserver.fix_sys_path()
 
 

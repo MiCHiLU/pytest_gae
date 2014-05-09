@@ -4,7 +4,7 @@ from setuptools import setup
 long_desc = open('README.rst', 'r').read()
 
 setup(name='pytest_gae',
-      version='0.2.1',
+      version='0.2.3',
       description="pytest plugin for apps written with Google's AppEngine",
       long_description=long_desc,
       author='Petras Zdanavicius (petraszd)',
