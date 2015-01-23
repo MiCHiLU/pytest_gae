@@ -45,10 +45,11 @@ def pytest_runtest_setup(item):
     project_path = item.config.option.gae_prj_path
 
     if item.config.option.use_devappserver2:
+        from google.appengine.tools.devappserver2.python import request_handler
         from google.appengine.tools.devappserver2.python import runtime
         config = runtime.runtime_config_pb2.Config()
         runtime.setup_stubs(config)
-        _application = runtime.PythonRuntime(config)
+        _application = request_handler.RequestHandler(config)
     else:
         from google.appengine.tools import old_dev_appserver
         from google.appengine.tools.dev_appserver_main import DEFAULT_ARGS
