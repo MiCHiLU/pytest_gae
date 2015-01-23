@@ -37,51 +37,6 @@ def pytest_configure(config):
     _validate_project_path(config.option.gae_prj_path)
 
 
-def pytest_runtest_setup(item):
-    if not item.config.option.use_gae:
-        return
-
-    gae_path = item.config.option.gae_path
-    project_path = item.config.option.gae_prj_path
-
-    if item.config.option.use_devappserver2:
-        from google.appengine.tools.devappserver2.python import request_handler
-        from google.appengine.tools.devappserver2.python import runtime
-        config = runtime.runtime_config_pb2.Config()
-        runtime.setup_stubs(config)
-        _application = request_handler.RequestHandler(config)
-    else:
-        from google.appengine.tools import old_dev_appserver
-        from google.appengine.tools.dev_appserver_main import DEFAULT_ARGS
-
-        config = DEFAULT_ARGS.copy()
-        config.update({'template_dir': os.path.join(gae_path, 'templates'),
-                       'blobstore_path': '/tmp/dev_appserver.test_blobstore',
-                       'root_path': project_path,
-                       'history_path': '/tmp/dev_appserver.datastore.test_history',
-                       'datastore_path': '/tmp/dev_appserver.test_datastore',
-                       'matcher_path': '/tmp/dev_appserver.test_matcher',
-                       'clear_datastore': True})
-
-        app_cfg, _junk, _from_cache = old_dev_appserver.LoadAppConfig(project_path, {})
-        old_dev_appserver.SetupStubs(app_cfg.application, **config)
-
-
-def pytest_runtest_teardown(item):
-    # There is some problems with GAE and
-    # py.test miscomunication that causes
-    # closed stream handler to be flushed.
-    #
-    # Wich of course causes Exception and
-    # some nasty errors at the end of testing.
-    #
-    # This nasty hack prevents that error to be
-    # displayed.
-    for h in logging.getLogger().handlers:
-        if isinstance(h, logging.StreamHandler):
-            _attach_save_flush(h)
-
-
 def _add_gae_to_syspath(config):
     """ Adds Google App Engine and libs that comes with GAE to sys.path
 
@@ -118,11 +73,3 @@ def _validate_project_path(path):
         raise pytest.UsageError("Your AppEngine's project can not "
                                 "be found. Try to use --gae-project-path "
                                 "option. Current path: <%s>" % path)
-
-
-def _attach_save_flush(handler):
-    def save_flush():
-        if not handler.stream.closed:
-            handler.stream.flush()
-
-    handler.flush = save_flush
