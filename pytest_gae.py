@@ -22,8 +22,6 @@ def pytest_addoption(parser):
     group.addoption('--gae-project-path', action='store', dest='gae_prj_path',
                     metavar='PATH', default='./',
                     help="Your project's source code's PATH")
-    group.addoption('--use-devappserver2', action='store_true', dest='use_devappserver2',
-                    default=False, help='Use devappserver2')
 
 
 def pytest_configure(config):
@@ -46,10 +44,7 @@ def _add_gae_to_syspath(config):
 
     sys.path.insert(0, config.option.gae_path)
 
-    if config.option.use_devappserver2:
-        import devappserver2 as dev_appserver
-    else:
-        import dev_appserver
+    import dev_appserver
     dev_appserver.fix_sys_path()
 
 
